@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>A27 ChatX - Free AI Study Assistant by Amigoo (Tunisia)</title>
+<meta name="description" content="A27 ChatX is a free AI study assistant made in Tunisia by Amigoo. Six specialist assistants for maths, algorithmics, sciences, languages and exam correction, in Arabic, French and English.">
+<link rel="canonical" href="{{SITE_URL}}/">
+<meta property="og:title" content="A27 ChatX - Free AI Study Assistant">
+<meta property="og:description" content="Ask anything, get exercises corrected, learn with quizzes. Made in Tunisia by Amigoo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{SITE_URL}}/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"A27 ChatX","url":"{{SITE_URL}}/","applicationCategory":"EducationalApplication","operatingSystem":"Any","inLanguage":["ar","fr","en"],"description":"Free AI study assistant for students with six specialist assistants.","author":{"@type":"Person","name":"Amigoo"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+  :root { --bg:#000; --fg:#fff; --muted:#9a9a9a; --line:rgba(255,255,255,.18); --panel:rgba(12,12,12,.88); --dot:255,255,255; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:"Segoe UI",system-ui,-apple-system,Tahoma,Arial,sans-serif; line-height:1.6; }
+  #globe { position:fixed; inset:0; width:100%; height:100%; z-index:0; opacity:.5; pointer-events:none; }
+  .nav, section, footer, .hero { position:relative; z-index:2; }
+  .nav { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:16px 22px; position:sticky; top:0; z-index:10; background:linear-gradient(var(--bg),transparent); }
+  .logo { font-weight:800; font-size:20px; letter-spacing:1px; color:var(--fg); text-decoration:none; }
+  .navr { display:flex; gap:10px; align-items:center; }
+  select { border:1px solid var(--line); background:var(--bg); color:var(--fg); border-radius:10px; padding:9px 10px; font:inherit; font-size:14px; }
+  .btn { display:inline-block; border:1.5px solid var(--fg); color:var(--fg); background:transparent; border-radius:12px; padding:11px 22px; font-size:16px; font-weight:700; text-decoration:none; cursor:pointer; transition:.2s; }
+  .btn:hover { background:var(--fg); color:var(--bg); }
+  .btn.solid { background:var(--fg); color:var(--bg); }
+  .btn.solid:hover { opacity:.85; }
+  .hero { min-height:82vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:40px 20px; }
+  .hero h1 { margin:0 0 8px; font-size:clamp(44px,10vw,96px); font-weight:800; letter-spacing:4px; line-height:1.05; }
+  .tag { margin:0 0 16px; font-size:clamp(18px,3vw,26px); color:var(--fg); }
+  .sub { margin:0 auto 30px; max-width:640px; color:var(--muted); font-size:clamp(16px,2.2vw,19px); }
+  .cta { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+  section { max-width:1040px; margin:0 auto; padding:60px 20px; }
+  h2 { margin:0 0 10px; font-size:clamp(26px,4.5vw,40px); font-weight:800; }
+  .lead { margin:0 0 28px; color:var(--muted); font-size:17px; max-width:680px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:16px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:20px; backdrop-filter:blur(8px); }
+  .card h3 { margin:0 0 4px; font-size:22px; }
+  .card .job { font-weight:700; margin-bottom:10px; }
+  .card .meta { display:block; color:var(--muted); font-size:14.5px; margin-top:6px; }
+  .card .meta b { color:var(--fg); }
+  .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin-top:26px; counter-reset:s; }
+  .step { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px; }
+  .step::before { counter-increment:s; content:counter(s); display:block; font-size:32px; font-weight:800; margin-bottom:4px; color:var(--muted); }
+  .step b { display:block; margin-bottom:4px; }
+  .step span { color:var(--muted); font-size:14.5px; }
+  .story p { font-size:18px; max-width:760px; margin:0 0 14px; }
+  .center { text-align:center; }
+  .center .lead { margin-inline:auto; }
+  footer { text-align:center; color:var(--muted); font-size:14px; padding:30px 20px 40px; border-top:1px solid var(--line); max-width:1040px; margin:20px auto 0; }
+  @media (max-width:520px) { .nav { padding:12px 14px; } .btn { padding:10px 16px; font-size:15px; } }
+</style>
+</head>
+<body>
+<noscript><h1>A27 ChatX</h1><p>Free AI study assistant made in Tunisia by Amigoo, an 18-year-old student. Six specialist assistants for maths, algorithmics, sciences, languages and exam correction, in Arabic, French and English. <a href="/app">Open the chat</a>.</p></noscript>
+
+<canvas id="globe"></canvas>
+
+<nav class="nav">
+  <a class="logo" href="/">A27 ChatX</a>
+  <div class="navr">
+    <select id="lang" aria-label="Language">
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="ar">العربية</option>
+    </select>
+    <a class="btn solid" href="/app" data-i="ctaShort">Chat</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>A27 ChatX</h1>
+  <p class="tag" data-i="tag"></p>
+  <p class="sub" data-i="sub"></p>
+  <div class="cta">
+    <a class="btn solid" href="/app" data-i="cta"></a>
+    <a class="btn" href="#models" data-i="cta2"></a>
+  </div>
+</header>
+
+<section id="models">
+  <h2 data-i="modelsTitle"></h2>
+  <p class="lead" data-i="modelsSub"></p>
+  <div class="grid" id="modelGrid"></div>
+</section>
+
+<section id="features">
+  <h2 data-i="featTitle"></h2>
+  <div class="grid" id="featGrid" style="margin-top:20px"></div>
+</section>
+
+<section class="story" id="story">
+  <h2 data-i="storyTitle"></h2>
+  <p data-i="p1"></p>
+  <p data-i="p2"></p>
+  <p data-i="p3"></p>
+  <div class="steps" id="steps"></div>
+</section>
+
+<section class="center" id="creator">
+  <h2 data-i="creatorTitle"></h2>
+  <p class="lead" data-i="creatorText"></p>
+  <a class="btn solid" href="/app" data-i="finalCta"></a>
+</section>
+
+<footer data-i="footer"></footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const root = document.documentElement;
+
+const AIS = {
+  elyssa: { name: "Elyssa",
+    en: { job: "General Assistant", level: "All levels, middle school to university", exp: "Everyday questions, explanations, writing, advice, translation and study help in any subject." },
+    fr: { job: "Assistante générale", level: "Tous niveaux, du collège à l'université", exp: "Questions du quotidien, explications, rédaction, conseils, traduction et aide aux études dans toutes les matières." },
+    ar: { job: "مساعدة عامة", level: "كل المستويات، من الإعدادي إلى الجامعة", exp: "أسئلة الحياة اليومية، الشرح، الكتابة، النصائح، الترجمة والمساعدة في كل المواد." } },
+  khawarizmi: { name: "Khawarizmi",
+    en: { job: "Math Tutor", level: "Middle school to Bac, all sections", exp: "Analysis (limits, derivatives, integrals), sequences, complex numbers, probability, geometry and proofs." },
+    fr: { job: "Tuteur de mathématiques", level: "Du collège au Bac, toutes sections", exp: "Analyse (limites, dérivées, intégrales), suites, nombres complexes, probabilités, géométrie et démonstrations." },
+    ar: { job: "مدرّس رياضيات", level: "من الإعدادي إلى الباكالوريا، كل الشعب", exp: "التحليل (النهايات، المشتقات، التكاملات)، المتتاليات، الأعداد المركبة، الاحتمالات، الهندسة والبراهين." } },
+  tanit: { name: "Tanit",
+    en: { job: "Algorithmics & Programming Teacher", level: "Bac Informatique, Bac Sciences and beginners", exp: "Tunisian-programme algorithms, files, arrays, procedures and functions, plus Python and debugging." },
+    fr: { job: "Professeure d'algorithmique et programmation", level: "Bac Informatique, Bac Sciences et débutants", exp: "Algorithmes du programme tunisien, fichiers, tableaux, procédures et fonctions, puis Python et débogage." },
+    ar: { job: "أستاذة الخوارزميات والبرمجة", level: "باكالوريا إعلامية وعلوم والمبتدئون", exp: "خوارزميات البرنامج التونسي، الملفات، الجداول، الإجراءات والدوال، ثم بايثون وتصحيح الأخطاء." } },
+  avicenna: { name: "Avicenna",
+    en: { job: "Science Teacher", level: "Middle school to Bac", exp: "Physics, chemistry and life & earth sciences (SVT): laws, experiments, problems and diagrams." },
+    fr: { job: "Professeur de sciences", level: "Du collège au Bac", exp: "Physique, chimie et SVT : lois, expériences, problèmes et schémas." },
+    ar: { job: "أستاذ العلوم", level: "من الإعدادي إلى الباكالوريا", exp: "الفيزياء والكيمياء وعلوم الحياة والأرض: القوانين، التجارب، المسائل والرسوم." } },
+  ibnkhaldun: { name: "Ibn Khaldun",
+    en: { job: "Languages & Humanities Coach", level: "Middle school to Bac", exp: "Arabic, French and English writing, grammar, essays, summaries, philosophy, history and geography." },
+    fr: { job: "Coach langues et sciences humaines", level: "Du collège au Bac", exp: "Rédaction, grammaire, dissertations et résumés en arabe, français et anglais, philosophie, histoire et géographie." },
+    ar: { job: "مدرّب اللغات والعلوم الإنسانية", level: "من الإعدادي إلى الباكالوريا", exp: "الكتابة والقواعد والإنشاء والتلخيص بالعربية والفرنسية والإنجليزية، الفلسفة، التاريخ والجغرافيا." } },
+  hannibal: { name: "Hannibal",
+    en: { job: "Exam Corrector", level: "Bac and exam preparation", exp: "Strict and fair correction with a mark out of 20, a mark scheme, each mistake explained and the model answer." },
+    fr: { job: "Correcteur d'examens", level: "Bac et préparation aux examens", exp: "Correction stricte et juste avec une note sur 20, un barème, chaque erreur expliquée et le corrigé modèle." },
+    ar: { job: "مصحّح الامتحانات", level: "الباكالوريا والتحضير للامتحانات", exp: "تصحيح صارم وعادل بعلامة من 20 وسلّم تنقيط وشرح كل خطأ مع الإصلاح النموذجي." } }
+};
+
+const T = {
+  en: {
+    ctaShort: "Chat", tag: "The free AI study partner for students",
+    sub: "Ask anything, get exercises corrected and learn with quizzes, in Arabic, French and English. Made in Tunisia by Amigoo.",
+    cta: "Start chatting →", cta2: "Meet the assistants",
+    modelsTitle: "Six assistants, six specialties", modelsSub: "Pick the expert that fits your question. Each one has its own role, level and way of teaching.",
+    lvl: "Level", exp: "Expert in",
+    featTitle: "What you can do",
+    feats: [["Word-by-word answers", "Watch the answer appear live and stop it any time."], ["Correct my exercise", "Send an exercise or exam and get a mark out of 20 with every mistake explained."], ["Files and pictures", "Upload a PDF, a text file or a photo of your exercise."], ["Web search", "Turn on web search to get current answers with sources."], ["Voice", "Speak your question and listen to the answer."], ["Private history", "Your chats and memory stay in your own browser."]],
+    storyTitle: "The story behind A27 ChatX",
+    p1: "Hi, I'm Amigoo, an 18-year-old student from Tunisia. A27 ChatX started with one simple question I typed one day: “how do I make an AI?”",
+    p2: "I learned that training a giant model from scratch costs millions, so I started smaller. I ran Qwen on my own laptop, gave it a personality, memory and tools, and improved it step by step.",
+    p3: "Then I wanted every student to use it, not only me. So I built a website, put it online, and created six assistants that each have a job. My goal: one place where any student can ask anything, and especially get Tunisian-programme exercises corrected.",
+    steps: [["The question", "How do I make an AI?"], ["First version", "Qwen running on my laptop with Ollama."], ["Tools and memory", "Calculator, web search, notes and a knowledge base."], ["Going online", "A website anyone can open from any phone."], ["Six assistants", "Specialists for maths, algorithmics, science, languages, correction and everyday help."]],
+    creatorTitle: "Made by Amigoo", creatorText: "A student building for students. A27 ChatX keeps growing, and your feedback helps it get better.",
+    finalCta: "Try A27 ChatX now →",
+    footer: "A27 ChatX can make mistakes. Always check important answers, especially for exams."
+  },
+  fr: {
+    ctaShort: "Discuter", tag: "Le partenaire d'étude IA gratuit pour les élèves",
+    sub: "Posez vos questions, faites corriger vos exercices et révisez avec des quiz, en arabe, français et anglais. Fait en Tunisie par Amigoo.",
+    cta: "Commencer →", cta2: "Découvrir les assistants",
+    modelsTitle: "Six assistants, six spécialités", modelsSub: "Choisissez l'expert qui correspond à votre question. Chacun a son rôle, son niveau et sa façon d'enseigner.",
+    lvl: "Niveau", exp: "Expert en",
+    featTitle: "Ce que vous pouvez faire",
+    feats: [["Réponses en direct", "Voyez la réponse s'écrire et arrêtez-la quand vous voulez."], ["Corriger mon exercice", "Envoyez un exercice ou un examen et recevez une note sur 20 avec chaque erreur expliquée."], ["Fichiers et images", "Ajoutez un PDF, un fichier texte ou la photo de votre exercice."], ["Recherche web", "Activez la recherche web pour des réponses actuelles avec sources."], ["Voix", "Dictez votre question et écoutez la réponse."], ["Historique privé", "Vos discussions et votre mémoire restent dans votre navigateur."]],
+    storyTitle: "L'histoire de A27 ChatX",
+    p1: "Salut, je suis Amigoo, un étudiant tunisien de 18 ans. A27 ChatX est né d'une question simple que j'ai tapée un jour : « comment créer une IA ? »",
+    p2: "J'ai appris qu'entraîner un énorme modèle à partir de zéro coûte des millions, alors j'ai commencé plus petit. J'ai fait tourner Qwen sur mon ordinateur, lui ai donné une personnalité, une mémoire et des outils, et je l'ai amélioré étape par étape.",
+    p3: "Ensuite, j'ai voulu que chaque élève puisse l'utiliser, pas seulement moi. J'ai donc créé un site, je l'ai mis en ligne et j'ai créé six assistants ayant chacun un métier. Mon but : un endroit où tout élève peut poser n'importe quelle question, et surtout faire corriger ses exercices du programme tunisien.",
+    steps: [["La question", "Comment créer une IA ?"], ["Première version", "Qwen sur mon ordinateur avec Ollama."], ["Outils et mémoire", "Calculatrice, recherche web, notes et base de connaissances."], ["En ligne", "Un site accessible depuis n'importe quel téléphone."], ["Six assistants", "Des spécialistes en maths, algorithmique, sciences, langues, correction et aide quotidienne."]],
+    creatorTitle: "Créé par Amigoo", creatorText: "Un étudiant qui construit pour les étudiants. A27 ChatX continue de grandir, et vos retours l'aident à s'améliorer.",
+    finalCta: "Essayer A27 ChatX →",
+    footer: "A27 ChatX peut se tromper. Vérifiez toujours les réponses importantes, surtout pour les examens."
+  },
+  ar: {
+    ctaShort: "محادثة", tag: "شريك الدراسة الذكي والمجاني للتلاميذ والطلبة",
+    sub: "اسأل أي شيء، صحّح تمارينك وراجع بالاختبارات، بالعربية والفرنسية والإنجليزية. صُنع في تونس على يد أميغو.",
+    cta: "← ابدأ المحادثة", cta2: "تعرّف على المساعدين",
+    modelsTitle: "ستة مساعدين، ستة اختصاصات", modelsSub: "اختر الخبير المناسب لسؤالك. لكل واحد دوره ومستواه وطريقته في التعليم.",
+    lvl: "المستوى", exp: "خبير في",
+    featTitle: "ماذا يمكنك أن تفعل",
+    feats: [["إجابات مباشرة", "شاهد الإجابة تُكتب أمامك وأوقفها متى شئت."], ["صحّح تمريني", "أرسل تمرينًا أو امتحانًا واحصل على علامة من 20 مع شرح كل خطأ."], ["ملفات وصور", "أضف ملف PDF أو نصًا أو صورة لتمرينك."], ["بحث في الويب", "فعّل البحث في الويب لإجابات حديثة مع المصادر."], ["الصوت", "انطق سؤالك واستمع إلى الإجابة."], ["سجل خاص", "محادثاتك وذاكرتك تبقى في متصفحك أنت."]],
+    storyTitle: "قصة A27 ChatX",
+    p1: "مرحبًا، أنا أميغو، طالب تونسي عمري 18 سنة. بدأ A27 ChatX بسؤال بسيط كتبته يومًا: «كيف أصنع ذكاءً اصطناعيًا؟»",
+    p2: "اكتشفت أن تدريب نموذج ضخم من الصفر يكلّف ملايين، فبدأت بشيء أصغر. شغّلت Qwen على حاسوبي، وأعطيته شخصية وذاكرة وأدوات، وطورته خطوة بخطوة.",
+    p3: "ثم أردت أن يستعمله كل تلميذ وليس أنا فقط. فبنيت موقعًا ونشرته على الإنترنت وصنعت ستة مساعدين لكل واحد منهم مهمة. هدفي: مكان واحد يسأل فيه أي تلميذ أي شيء، وخاصة تصحيح تمارين البرنامج التونسي.",
+    steps: [["السؤال", "كيف أصنع ذكاءً اصطناعيًا؟"], ["النسخة الأولى", "Qwen على حاسوبي مع Ollama."], ["أدوات وذاكرة", "آلة حاسبة، بحث في الويب، ملاحظات وقاعدة معرفة."], ["على الإنترنت", "موقع يفتحه أي أحد من أي هاتف."], ["ستة مساعدين", "مختصون في الرياضيات والخوارزميات والعلوم واللغات والتصحيح والمساعدة اليومية."]],
+    creatorTitle: "من صنع أميغو", creatorText: "طالب يبني من أجل الطلبة. A27 ChatX يكبر باستمرار، وآراؤكم تساعده على التحسن.",
+    finalCta: "← جرّب A27 ChatX الآن",
+    footer: "قد يخطئ A27 ChatX. تحقق دائمًا من الإجابات المهمة، خاصة في الامتحانات."
+  }
+};
+
+function lsGet(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } }
+function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+
+let lang = lsGet("a27_lang", null);
+if (!T[lang]) { const n = (navigator.language || "en").slice(0, 2); lang = T[n] ? n : "en"; }
+const t = k => (T[lang] && T[lang][k]) || T.en[k];
+
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; }
+
+function render() {
+  root.lang = lang; root.dir = lang === "ar" ? "rtl" : "ltr";
+  $("lang").value = lang;
+  document.querySelectorAll("[data-i]").forEach(e => { e.textContent = t(e.dataset.i); });
+
+  const mg = $("modelGrid"); mg.innerHTML = "";
+  Object.values(AIS).forEach(a => {
+    const d = a[lang] || a.en, c = el("div", "card");
+    c.append(el("h3", "", a.name), el("div", "job", d.job));
+    const m1 = el("span", "meta"); m1.append(el("b", "", t("lvl") + ": "), document.createTextNode(d.level));
+    const m2 = el("span", "meta"); m2.append(el("b", "", t("exp") + ": "), document.createTextNode(d.exp));
+    c.append(m1, m2); mg.appendChild(c);
+  });
+
+  const fg = $("featGrid"); fg.innerHTML = "";
+  t("feats").forEach(f => { const c = el("div", "card"); c.append(el("h3", "", f[0]), el("span", "meta", f[1])); fg.appendChild(c); });
+
+  const st = $("steps"); st.innerHTML = "";
+  t("steps").forEach(s => { const c = el("div", "step"); c.append(el("b", "", s[0]), el("span", "", s[1])); st.appendChild(c); });
+}
+$("lang").onchange = e => { lang = e.target.value; lsSet("a27_lang", lang); render(); };
+render();
+
+/* globe of points */
+const canvas = $("globe"), ctx = canvas.getContext("2d");
+let W = 0, H = 0;
+const P = [], N = 1100, GOLD = Math.PI * (3 - Math.sqrt(5));
+for (let i = 0; i < N; i++) { const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), a = GOLD * i; P.push({ x: Math.cos(a) * r, y, z: Math.sin(a) * r }); }
+function size() { const d = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; canvas.width = W * d; canvas.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+addEventListener("resize", size); size();
+let ang = 0;
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function frame() {
+  if (!reduce) ang += 0.003;
+  ctx.clearRect(0, 0, W, H);
+  const R = Math.min(W, H) * 0.42, cx = W / 2, cy = H / 2, ca = Math.cos(ang), sa = Math.sin(ang), ct = Math.cos(0.4), st = Math.sin(0.4);
+  for (const p of P) {
+    const x1 = p.x * ca + p.z * sa, z1 = -p.x * sa + p.z * ca, y2 = p.y * ct - z1 * st, z2 = p.y * st + z1 * ct, d = (z2 + 1) / 2;
+    ctx.fillStyle = "rgba(255,255,255," + (0.06 + d * d * 0.8).toFixed(3) + ")";
+    ctx.beginPath(); ctx.arc(cx + x1 * R, cy + y2 * R, 0.5 + d * 1.6, 0, 6.2832); ctx.fill();
+  }
+  if (!document.hidden) requestAnimationFrame(frame);
+}
+document.addEventListener("visibilitychange", () => { if (!document.hidden) requestAnimationFrame(frame); });
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
